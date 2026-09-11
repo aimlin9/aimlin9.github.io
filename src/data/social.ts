@@ -1,15 +1,14 @@
-// Central place to update contact + social links.
-// TODO: swap githubUsername for the real handle once claimed/confirmed.
 export const profile = {
   name: "Gyimah Ramsey Opoku",
   shortName: "Ramsey",
   role: "AI/ML Engineer & Software Developer",
   location: "Kumasi, Ghana",
   school: "Kwame Nkrumah University of Science and Technology (KNUST)",
-  degree: "BSc Computer Science, Class of 2027",
-  email: "rogyimah1@st.knust.edu.gh",
-  githubUsername: "REPLACE_ME",
-  linkedin: "https://www.linkedin.com/in/REPLACE_ME",
+  degree: "BSc Computer Science, Expected 2027",
+  email: "oramsey609@gmail.com",
+  phone: "+233 50 885 8674",
+  githubUsername: "aimlin9",
+  linkedin: "https://www.linkedin.com/in/ramsey-opoku-gyimah-79a4b72aa",
   resumeUrl: "/resume.pdf",
 };
 

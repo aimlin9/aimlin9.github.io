@@ -4,11 +4,10 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
-// TODO: update `site` once the GitHub username is confirmed.
-// - username.github.io repo  -> site: 'https://<username>.github.io'
-// - any other repo name      -> also set base: '/<repo-name>'
+// If this site instead lives in a project repo (not aimlin9.github.io),
+// also set base: '/<repo-name>'.
 export default defineConfig({
-  site: 'https://REPLACE_ME.github.io',
+  site: 'https://aimlin9.github.io',
   vite: {
     plugins: [tailwindcss()]
   }

@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import ramsey from "../assets/ramsey.png";
 import { profile } from "../data/social";
 ---
 
@@ -9,20 +11,43 @@ import { profile } from "../data/social";
       <h2 class="mt-4 text-balance font-display text-3xl font-semibold text-ink md:text-4xl">
         Curious about how systems learn, and how to ship them well.
       </h2>
+
+      <div class="glass-shell relative mt-10 hidden w-full max-w-xs overflow-hidden rounded-[2rem] p-2 md:block">
+        <div class="relative overflow-hidden rounded-[calc(2rem-0.5rem)]">
+          <Image
+            src={ramsey}
+            alt={profile.name}
+            width={480}
+            height={560}
+            class="aspect-[6/7] w-full object-cover grayscale-[15%] contrast-[1.05]"
+          />
+          <div
+            class="pointer-events-none absolute inset-0"
+            style="background: linear-gradient(180deg, transparent 55%, rgba(5,5,5,0.85) 100%), radial-gradient(120% 90% at 15% 0%, transparent 60%, var(--color-bg) 100%);"
+          >
+          </div>
+          <div
+            class="pointer-events-none absolute -inset-x-6 -top-10 h-40 rounded-full opacity-30 blur-3xl"
+            style="background: radial-gradient(circle, var(--color-violet), transparent 70%);"
+          >
+          </div>
+        </div>
+      </div>
     </div>
 
     <div data-reveal data-reveal-delay="120" class="flex flex-col gap-6 text-ink-muted">
       <p class="leading-relaxed">
-        I'm {profile.shortName}, a computer science student at {profile.school}, currently in
-        my final year. My strongest pull is toward machine learning and AI — the parts of the
-        stack where you're not just writing logic, but teaching a system to find it.
+        I'm {profile.shortName}, a computer science student at {profile.school}. I build across
+        two fronts: full-stack platforms and applied machine learning — federated learning,
+        homomorphic encryption, computer vision — on one side, and the fast, secure network
+        systems on the other, a habit left over from Cisco and Huawei certifications earlier on.
       </p>
       <p class="leading-relaxed">
-        Outside of coursework, I build small end-to-end projects to keep theory honest: models
+        Outside of coursework, I build end-to-end projects to keep theory honest: models
         trained on real, messy data, wrapped in APIs and interfaces that make them usable. That
         habit has carried into this fall, where I'm working across three remote internships in
-        parallel — a deliberate bet on breadth after a slower run at landing opportunities
-        earlier on.
+        parallel — research on document-vision restoration, a churn-modeling engagement, and a
+        data-analyst role about to start.
       </p>
       <p class="leading-relaxed">
         I care about the boring-but-critical parts too: clean data pipelines, reproducible

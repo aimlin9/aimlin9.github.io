@@ -1,18 +1,27 @@
 export const skillGroups = [
   {
     label: "Machine Learning & AI",
-    items: ["PyTorch", "TensorFlow", "scikit-learn", "Pandas / NumPy", "Computer Vision", "NLP"],
+    items: [
+      "PyTorch",
+      "TensorFlow / Keras",
+      "Transfer Learning",
+      "TFLite Optimization",
+      "spaCy NLP",
+      "Federated Learning (Flower)",
+      "Differential Privacy (Opacus)",
+      "Paillier Homomorphic Encryption",
+    ],
   },
   {
     label: "Languages",
-    items: ["Python", "TypeScript", "JavaScript", "C++", "SQL"],
+    items: ["Python", "TypeScript / JavaScript", "C#", "C", "SQL"],
   },
   {
-    label: "Web & Systems",
-    items: ["React", "Node.js", "Astro", "PostgreSQL", "REST APIs"],
+    label: "Web & Backend",
+    items: ["React / Next.js", "FastAPI", "Django REST", "ASP.NET Core MVC", "Node.js", "Prisma", "PostgreSQL"],
   },
   {
-    label: "Tools & Workflow",
-    items: ["Git", "Docker", "Jupyter", "Linux", "CI/CD"],
+    label: "Networking & Tools",
+    items: ["Cisco / Huawei (OSPF, EIGRP, VLANs)", "Wireshark", "Git / GitHub", "Docker", "Linux"],
   },
 ];
