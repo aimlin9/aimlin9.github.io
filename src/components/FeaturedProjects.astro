@@ -1,0 +1,116 @@
+---
+import DeviceShowcase from "./DeviceShowcase.astro";
+import { featuredProjects } from "../data/featuredProjects";
+
+import agro01 from "../assets/showcases/agrosense/01-diagnose.png";
+import agro02 from "../assets/showcases/agrosense/02-plant.png";
+import agro03 from "../assets/showcases/agrosense/03-sell.png";
+import agro04 from "../assets/showcases/agrosense/04-home.jpg";
+import agro05 from "../assets/showcases/agrosense/05-result.jpg";
+
+import fl01 from "../assets/showcases/fl/01-district.png";
+import fl02 from "../assets/showcases/fl/02-schooladmin.png";
+
+import fin01 from "../assets/showcases/fintrack/01-hero.png";
+import fin02 from "../assets/showcases/fintrack/02-howitworks.png";
+
+const showcaseMap = [
+  {
+    variant: "laptop-phone" as const,
+    phoneScreens: [
+      { src: agro01, alt: "AgroSense onboarding — diagnose" },
+      { src: agro02, alt: "AgroSense onboarding — identify plants" },
+      { src: agro03, alt: "AgroSense onboarding — sell produce" },
+      { src: agro04, alt: "AgroSense home screen" },
+      { src: agro05, alt: "AgroSense diagnosis result" },
+    ],
+    screens: [],
+  },
+  {
+    variant: "laptop" as const,
+    screens: [
+      { src: fl01, alt: "Federated learning district dashboard" },
+      { src: fl02, alt: "Federated learning school admin view" },
+    ],
+    phoneScreens: [],
+  },
+  {
+    variant: "laptop" as const,
+    screens: [
+      { src: fin01, alt: "FinTrack Ghana landing page" },
+      { src: fin02, alt: "FinTrack Ghana how it works section" },
+    ],
+    phoneScreens: [],
+  },
+];
+---
+
+<section id="projects" class="relative scroll-mt-28 px-4 py-10">
+  <div class="mx-auto max-w-6xl">
+    <div data-reveal class="mb-8">
+      <span class="eyebrow">Case studies</span>
+      <h2 class="mt-4 text-balance font-display text-3xl font-semibold text-ink md:text-4xl">
+        Three builds, closer up
+      </h2>
+    </div>
+
+    <div class="flex flex-col">
+      {
+        featuredProjects.map((project, i) => {
+          const showcase = showcaseMap[i];
+          const reversed = i % 2 === 1;
+          return (
+            <div class="grid items-center gap-10 border-t border-hairline py-16 first:border-t-0 md:grid-cols-2 md:gap-16">
+              <div class={reversed ? "md:order-2" : ""} data-reveal>
+                <DeviceShowcase
+                  variant={showcase.variant}
+                  screens={showcase.screens}
+                  phoneScreens={showcase.phoneScreens}
+                  secondsEach={2.6}
+                />
+              </div>
+
+              <div class={reversed ? "md:order-1" : ""} data-reveal data-reveal-delay="100">
+                <span class="font-display text-sm text-ink-faint">{String(i + 1).padStart(2, "0")} / 03</span>
+                <h3 class="mt-4 text-balance font-display text-2xl font-semibold text-ink md:text-3xl">
+                  {project.title}
+                </h3>
+                <p class="mt-4 max-w-md text-balance leading-relaxed text-ink-muted">{project.description}</p>
+
+                <div class="mt-6 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span class="rounded-full border border-hairline px-2.5 py-1 text-[0.7rem] font-medium text-ink-faint">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div class="mt-8 flex items-center gap-6">
+                  <div>
+                    <div class="font-display text-2xl font-bold text-accent">{project.stat.value}</div>
+                    <div class="text-xs uppercase tracking-[0.1em] text-ink-faint">{project.stat.label}</div>
+                  </div>
+                </div>
+
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  data-magnetic
+                  class="group mt-8 inline-flex items-center gap-3 rounded-full border border-hairline-strong px-6 py-3 text-sm font-semibold text-ink transition-colors duration-500 hover:bg-white/5"
+                >
+                  View on GitHub
+                  <span class="flex h-7 w-7 items-center justify-center rounded-full bg-white/5 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:-translate-y-[1px]">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M7 17L17 7M17 7H9M17 7V15" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

@@ -1,14 +1,12 @@
 ---
 import { profile } from "../data/social";
+import Terrain from "./Terrain.astro";
 ---
 
-<section id="top" class="relative flex min-h-[100dvh] items-center px-4 pt-32 pb-24">
-  <div class="mx-auto w-full max-w-6xl">
-    <div data-reveal class="mb-8 inline-flex items-center gap-2 rounded-full border border-hairline bg-white/5 px-3 py-1">
-      <span class="h-1.5 w-1.5 rounded-full bg-accent"></span>
-      <span class="eyebrow">Open to remote ML/SWE roles</span>
-    </div>
+<section id="top" class="relative flex min-h-[100dvh] items-end overflow-hidden px-4 pb-0 pt-32">
+  <Terrain />
 
+  <div class="relative z-10 mx-auto w-full max-w-6xl pb-20">
     <h1
       data-reveal
       data-reveal-delay="80"
