@@ -1,0 +1,71 @@
+---
+import { profile } from "../data/social";
+---
+
+<section id="top" class="relative flex min-h-[100dvh] items-center px-4 pt-32 pb-24">
+  <div class="mx-auto w-full max-w-5xl">
+    <div data-reveal class="mb-8 inline-flex items-center gap-2 rounded-full border border-hairline bg-white/5 px-3 py-1">
+      <span class="h-1.5 w-1.5 rounded-full bg-emerald"></span>
+      <span class="eyebrow">Open to remote ML/SWE roles</span>
+    </div>
+
+    <h1
+      data-reveal
+      data-reveal-delay="80"
+      class="text-balance font-display text-[clamp(2.75rem,7vw,5.5rem)] font-semibold leading-[1.02] text-ink"
+    >
+      {profile.name}
+      <span class="block text-ink-muted">builds machine learning systems that ship.</span>
+    </h1>
+
+    <p
+      data-reveal
+      data-reveal-delay="180"
+      class="mt-8 max-w-xl text-balance text-lg leading-relaxed text-ink-muted"
+    >
+      4th-year Computer Science student at KNUST, currently splitting time across three remote
+      internships this fall. Focused on machine learning, applied AI, and the software engineering
+      that gets models into production.
+    </p>
+
+    <div data-reveal data-reveal-delay="280" class="mt-11 flex flex-wrap items-center gap-4">
+      <a
+        href="#projects"
+        data-magnetic
+        class="group inline-flex items-center gap-3 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-[1.02] active:scale-[0.98]"
+      >
+        View projects
+        <span
+          class="flex h-8 w-8 items-center justify-center rounded-full bg-black/10 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:-translate-y-[1px] group-hover:scale-105"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M7 17L17 7M17 7H9M17 7V15" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+      </a>
+
+      <a
+        href="#contact"
+        data-magnetic
+        class="inline-flex items-center gap-2 rounded-full border border-hairline-strong px-6 py-3 text-sm font-semibold text-ink transition-colors duration-500 hover:bg-white/5"
+      >
+        Get in touch
+      </a>
+    </div>
+
+    <div data-reveal data-reveal-delay="380" class="mt-20 flex flex-wrap gap-x-10 gap-y-4 text-ink-faint">
+      <div class="flex items-baseline gap-2">
+        <span class="font-display text-2xl font-semibold text-ink">3</span>
+        <span class="text-xs uppercase tracking-[0.15em]">Remote internships, Fall 2026</span>
+      </div>
+      <div class="flex items-baseline gap-2">
+        <span class="font-display text-2xl font-semibold text-ink">4th</span>
+        <span class="text-xs uppercase tracking-[0.15em]">Year, KNUST CS</span>
+      </div>
+      <div class="flex items-baseline gap-2">
+        <span class="font-display text-2xl font-semibold text-ink">ML/AI</span>
+        <span class="text-xs uppercase tracking-[0.15em]">Primary focus</span>
+      </div>
+    </div>
+  </div>
+</section>

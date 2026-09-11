@@ -1,0 +1,11 @@
+---
+import { profile } from "../data/social";
+const year = new Date().getFullYear();
+---
+
+<footer class="relative border-t border-hairline px-4 py-10">
+  <div class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 text-xs text-ink-faint md:flex-row">
+    <p>© {year} {profile.name}. Built with Astro.</p>
+    <a href="#top" class="transition-colors duration-300 hover:text-ink">Back to top ↑</a>
+  </div>
+</footer>

@@ -1,0 +1,40 @@
+---
+import { profile } from "../data/social";
+---
+
+<section id="about" class="relative px-4 py-28 md:py-36">
+  <div class="mx-auto grid max-w-5xl gap-14 md:grid-cols-[0.9fr_1.1fr]">
+    <div data-reveal>
+      <span class="eyebrow">About</span>
+      <h2 class="mt-4 text-balance font-display text-3xl font-semibold text-ink md:text-4xl">
+        Curious about how systems learn, and how to ship them well.
+      </h2>
+    </div>
+
+    <div data-reveal data-reveal-delay="120" class="flex flex-col gap-6 text-ink-muted">
+      <p class="leading-relaxed">
+        I'm {profile.shortName}, a computer science student at {profile.school}, currently in
+        my final year. My strongest pull is toward machine learning and AI — the parts of the
+        stack where you're not just writing logic, but teaching a system to find it.
+      </p>
+      <p class="leading-relaxed">
+        Outside of coursework, I build small end-to-end projects to keep theory honest: models
+        trained on real, messy data, wrapped in APIs and interfaces that make them usable. That
+        habit has carried into this fall, where I'm working across three remote internships in
+        parallel — a deliberate bet on breadth after a slower run at landing opportunities
+        earlier on.
+      </p>
+      <p class="leading-relaxed">
+        I care about the boring-but-critical parts too: clean data pipelines, reproducible
+        experiments, and code that a teammate can actually read.
+      </p>
+
+      <div class="glass-shell glass-core mt-4 rounded-[1.75rem] p-6">
+        <p class="text-sm leading-relaxed text-ink-muted">
+          <span class="font-display font-semibold text-ink">{profile.degree}</span><br />
+          {profile.school} · {profile.location}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

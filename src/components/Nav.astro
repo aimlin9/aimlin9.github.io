@@ -1,0 +1,117 @@
+---
+const links = [
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
+];
+---
+
+<header class="fixed inset-x-0 top-6 z-40 flex justify-center px-4">
+  <nav
+    class="glass-shell flex w-full max-w-xl items-center justify-between rounded-full px-5 py-2.5 shadow-[0_8px_40px_rgba(0,0,0,0.4)]"
+  >
+    <a href="#top" class="font-display text-sm font-semibold tracking-tight text-ink">
+      G.R.O
+    </a>
+
+    <ul class="hidden items-center gap-7 md:flex">
+      {
+        links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="text-[0.8rem] font-medium text-ink-muted transition-colors duration-300 hover:text-ink"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <a
+      href="#contact"
+      data-magnetic
+      class="hidden items-center gap-2 rounded-full bg-white/95 px-4 py-1.5 text-[0.78rem] font-semibold text-black transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-[1.03] active:scale-[0.97] md:inline-flex"
+    >
+      Let's talk
+    </a>
+
+    <button
+      id="menu-toggle"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      class="relative flex h-8 w-8 items-center justify-center md:hidden"
+    >
+      <span
+        id="bar-1"
+        class="absolute h-[1.5px] w-4 bg-ink transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
+        style="transform: translateY(-3px);"
+      ></span>
+      <span
+        id="bar-2"
+        class="absolute h-[1.5px] w-4 bg-ink transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
+        style="transform: translateY(3px);"
+      ></span>
+    </button>
+  </nav>
+</header>
+
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-30 flex translate-y-[-8%] flex-col items-center justify-center gap-2 bg-black/85 opacity-0 backdrop-blur-3xl transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] pointer-events-none md:hidden"
+>
+  {
+    links.map((link, i) => (
+      <a
+        href={link.href}
+        data-menu-link
+        class="menu-link translate-y-12 opacity-0 py-3 font-display text-2xl font-medium text-ink transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
+        style={`transition-delay: ${100 + i * 70}ms`}
+      >
+        {link.label}
+      </a>
+    ))
+  }
+</div>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const bar1 = document.getElementById("bar-1");
+  const bar2 = document.getElementById("bar-2");
+  let open = false;
+
+  function setMenu(next: boolean) {
+    open = next;
+    toggle?.setAttribute("aria-expanded", String(open));
+    if (!menu || !bar1 || !bar2) return;
+
+    if (open) {
+      menu.classList.remove("opacity-0", "pointer-events-none", "translate-y-[-8%]");
+      menu.classList.add("opacity-100", "translate-y-0");
+      requestAnimationFrame(() => {
+        menu.querySelectorAll("[data-menu-link]").forEach((el) => {
+          el.classList.remove("translate-y-12", "opacity-0");
+        });
+      });
+      bar1.style.transform = "rotate(45deg)";
+      bar2.style.transform = "rotate(-45deg)";
+    } else {
+      menu.classList.add("opacity-0", "pointer-events-none", "translate-y-[-8%]");
+      menu.classList.remove("opacity-100", "translate-y-0");
+      menu.querySelectorAll("[data-menu-link]").forEach((el) => {
+        el.classList.add("translate-y-12", "opacity-0");
+      });
+      bar1.style.transform = "translateY(-3px)";
+      bar2.style.transform = "translateY(3px)";
+    }
+  }
+
+  toggle?.addEventListener("click", () => setMenu(!open));
+  menu?.querySelectorAll("[data-menu-link]").forEach((el) => {
+    el.addEventListener("click", () => setMenu(false));
+  });
+</script>

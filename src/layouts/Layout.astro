@@ -1,0 +1,89 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Gyimah Ramsey Opoku — AI/ML Engineer & Software Developer",
+  description = "Portfolio of Gyimah Ramsey Opoku, a computer science student at KNUST focused on machine learning, AI, and software engineering.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="min-h-[100dvh] selection:bg-violet-400/30">
+    <div class="noise-overlay"></div>
+
+    <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
+      <div
+        class="absolute -top-32 left-[8%] h-[32rem] w-[32rem] rounded-full opacity-[0.18] blur-[110px]"
+        style="background: radial-gradient(circle, var(--color-violet), transparent 70%); animation: drift 22s ease-in-out infinite;"
+      >
+      </div>
+      <div
+        class="absolute top-[35%] right-[4%] h-[28rem] w-[28rem] rounded-full opacity-[0.14] blur-[110px]"
+        style="background: radial-gradient(circle, var(--color-emerald), transparent 70%); animation: drift-slow 26s ease-in-out infinite;"
+      >
+      </div>
+      <div
+        class="absolute bottom-[-10%] left-[30%] h-[26rem] w-[26rem] rounded-full opacity-[0.10] blur-[120px]"
+        style="background: radial-gradient(circle, var(--color-amber), transparent 70%); animation: drift 30s ease-in-out infinite;"
+      >
+      </div>
+    </div>
+
+    <slot />
+
+    <script>
+      const revealEls = document.querySelectorAll<HTMLElement>("[data-reveal]");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement;
+              const delay = el.dataset.revealDelay ?? "0";
+              el.style.transitionDelay = `${delay}ms`;
+              el.classList.add("is-visible");
+              observer.unobserve(el);
+            }
+          }
+        },
+        { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+      );
+      revealEls.forEach((el) => {
+        el.classList.add("reveal");
+        observer.observe(el);
+      });
+
+      // Magnetic hover for buttons flagged with data-magnetic
+      document.querySelectorAll<HTMLElement>("[data-magnetic]").forEach((btn) => {
+        btn.addEventListener("mousemove", (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          btn.style.transform = `translate(${x * 0.12}px, ${y * 0.25}px)`;
+        });
+        btn.addEventListener("mouseleave", () => {
+          btn.style.transform = "translate(0, 0)";
+        });
+      });
+    </script>
+  </body>
+</html>
