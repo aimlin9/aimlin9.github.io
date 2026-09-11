@@ -1,0 +1,28 @@
+---
+const statement =
+  "Most systems guess with confidence. I would rather build ones that know what they do not know, and say so — because a model that is honestly 70% right beats one that confidently fakes the rest.";
+
+const words = statement.split(" ");
+---
+
+<section class="relative px-4 py-28 md:py-40">
+  <div class="mx-auto max-w-4xl">
+    <p
+      data-reveal
+      class="word-reveal text-balance font-display text-[clamp(1.75rem,4.2vw,3.25rem)] font-medium leading-[1.2] text-ink"
+    >
+      {
+        words.map((word, i) => (
+          <>
+            <span data-word style={`transition-delay: ${(i % 6) * 40}ms`}>
+              {word}
+            </span>{" "}
+          </>
+        ))
+      }
+    </p>
+    <p data-reveal data-reveal-delay="120" class="mt-8 text-sm uppercase tracking-[0.2em] text-ink-faint">
+      — a habit borrowed from document-restoration research: flag uncertainty, never hallucinate it away.
+    </p>
+  </div>
+</section>

@@ -2,7 +2,7 @@
 import { experience, education } from "../data/experience";
 ---
 
-<section id="experience" class="relative px-4 py-28 md:py-36">
+<section id="experience" class="relative scroll-mt-28 px-4 py-28 md:py-36">
   <div class="mx-auto max-w-4xl">
     <div data-reveal class="mb-14">
       <span class="eyebrow">Experience</span>
@@ -18,7 +18,7 @@ import { experience, education } from "../data/experience";
             <span
               class:list={[
                 "absolute -left-[calc(2rem+1px)] top-1.5 h-2.5 w-2.5 rounded-full",
-                item.current ? "bg-emerald" : "bg-ink-faint",
+                item.current ? "bg-accent" : "bg-ink-faint",
               ]}
             />
             <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">

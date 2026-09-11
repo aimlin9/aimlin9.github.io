@@ -2,19 +2,25 @@
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Hero from "../components/Hero.astro";
+import Marquee from "../components/Marquee.astro";
 import About from "../components/About.astro";
+import Philosophy from "../components/Philosophy.astro";
 import Skills from "../components/Skills.astro";
 import Experience from "../components/Experience.astro";
 import Projects from "../components/Projects.astro";
 import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
+
+const marqueeItems = ["Machine Learning", "Federated Learning", "Computer Vision", "Full-Stack", "KNUST '27"];
 ---
 
 <Layout>
   <Nav />
   <main>
     <Hero />
+    <Marquee items={marqueeItems} />
     <About />
+    <Philosophy />
     <Skills />
     <Experience />
     <Projects />
