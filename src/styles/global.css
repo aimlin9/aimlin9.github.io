@@ -16,6 +16,7 @@
 
   --ease-fluid: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-snap: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @layer base {
@@ -120,4 +121,36 @@
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
+}
+
+/* Reduced motion: keep opacity/color feedback, drop movement. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: opacity 300ms ease, filter 300ms ease;
+    transform: none !important;
+  }
+  .reveal.is-visible {
+    transform: none !important;
+  }
+  .word-reveal span {
+    transition: opacity 300ms ease;
+    filter: none !important;
+  }
+  .marquee-track {
+    animation: none;
+  }
+  [style*="animation: drift"],
+  [style*="animation: drift-slow"] {
+    animation: none !important;
+  }
+  [data-magnetic] {
+    transition: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
 }

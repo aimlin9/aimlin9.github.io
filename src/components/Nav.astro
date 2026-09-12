@@ -22,7 +22,7 @@ const links = [
           <li>
             <a
               href={link.href}
-              class="text-[0.8rem] font-medium text-ink-muted transition-colors duration-300 hover:text-ink"
+              class="text-[0.8rem] font-medium text-ink-muted transition-colors duration-200 hover:text-ink"
             >
               {link.label}
             </a>
@@ -34,7 +34,7 @@ const links = [
     <a
       href="#contact"
       data-magnetic
-      class="hidden items-center gap-2 rounded-full bg-white/95 px-4 py-1.5 text-[0.78rem] font-semibold text-black transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-[1.03] active:scale-[0.97] md:inline-flex"
+      class="hidden items-center gap-2 rounded-full bg-white/95 px-4 py-1.5 text-[0.78rem] font-semibold text-black transition-transform duration-150 ease-[var(--ease-out-strong)] md:inline-flex"
     >
       Let's talk
     </a>
@@ -47,12 +47,12 @@ const links = [
     >
       <span
         id="bar-1"
-        class="absolute h-[1.5px] w-4 bg-ink transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
+        class="absolute h-[1.5px] w-4 bg-ink transition-transform duration-400 ease-[cubic-bezier(0.32,0.72,0,1)]"
         style="transform: translateY(-3px);"
       ></span>
       <span
         id="bar-2"
-        class="absolute h-[1.5px] w-4 bg-ink transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
+        class="absolute h-[1.5px] w-4 bg-ink transition-transform duration-400 ease-[cubic-bezier(0.32,0.72,0,1)]"
         style="transform: translateY(3px);"
       ></span>
     </button>
@@ -61,15 +61,16 @@ const links = [
 
 <div
   id="mobile-menu"
-  class="fixed inset-0 z-30 flex translate-y-[-8%] flex-col items-center justify-center gap-2 bg-black/85 opacity-0 backdrop-blur-3xl transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] pointer-events-none md:hidden"
+  class="fixed inset-0 z-30 flex translate-y-[-8%] flex-col items-center justify-center gap-2 bg-black/85 opacity-0 backdrop-blur-3xl transition-[opacity,transform] duration-400 ease-[cubic-bezier(0.32,0.72,0,1)] pointer-events-none md:hidden"
 >
   {
     links.map((link, i) => (
       <a
         href={link.href}
         data-menu-link
-        class="menu-link translate-y-12 opacity-0 py-3 font-display text-2xl font-medium text-ink transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
+        class="menu-link translate-y-12 opacity-0 py-3 font-display text-2xl font-medium text-ink transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
         style={`transition-delay: ${100 + i * 70}ms`}
+        data-base-delay={`${100 + i * 70}ms`}
       >
         {link.label}
       </a>
@@ -89,20 +90,34 @@ const links = [
     toggle?.setAttribute("aria-expanded", String(open));
     if (!menu || !bar1 || !bar2) return;
 
+    const menuLinks = menu.querySelectorAll<HTMLElement>("[data-menu-link]");
+
     if (open) {
+      // Deliberate open: restore the full staggered flourish.
+      menu.style.transitionDuration = "";
+      menuLinks.forEach((el) => {
+        el.style.transitionDuration = "";
+        el.style.transitionDelay = el.dataset.baseDelay ?? "";
+      });
       menu.classList.remove("opacity-0", "pointer-events-none", "translate-y-[-8%]");
       menu.classList.add("opacity-100", "translate-y-0");
       requestAnimationFrame(() => {
-        menu.querySelectorAll("[data-menu-link]").forEach((el) => {
+        menuLinks.forEach((el) => {
           el.classList.remove("translate-y-12", "opacity-0");
         });
       });
       bar1.style.transform = "rotate(45deg)";
       bar2.style.transform = "rotate(-45deg)";
     } else {
+      // Quick dismiss: snap, no stagger — asymmetric with the open flourish.
+      menu.style.transitionDuration = "200ms";
+      menuLinks.forEach((el) => {
+        el.style.transitionDelay = "0ms";
+        el.style.transitionDuration = "150ms";
+      });
       menu.classList.add("opacity-0", "pointer-events-none", "translate-y-[-8%]");
       menu.classList.remove("opacity-100", "translate-y-0");
-      menu.querySelectorAll("[data-menu-link]").forEach((el) => {
+      menuLinks.forEach((el) => {
         el.classList.add("translate-y-12", "opacity-0");
       });
       bar1.style.transform = "translateY(-3px)";

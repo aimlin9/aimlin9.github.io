@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# local Claude Code / agent tooling (installed skills, not site content)
+.agents/
+.claude/
+skills-lock.json

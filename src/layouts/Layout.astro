@@ -67,16 +67,38 @@ const {
         observer.observe(el);
       });
 
-      // Magnetic hover for buttons flagged with data-magnetic
+      // Magnetic hover for buttons flagged with data-magnetic.
+      // Press-scale is folded in here (not a Tailwind active: class) because
+      // this handler already owns the element's inline `transform` — a
+      // separate active:scale utility would be silently clobbered by it.
       document.querySelectorAll<HTMLElement>("[data-magnetic]").forEach((btn) => {
+        let tx = 0;
+        let ty = 0;
+        let pressed = false;
+
+        const apply = () => {
+          btn.style.transform = `translate(${tx}px, ${ty}px) scale(${pressed ? 0.96 : 1})`;
+        };
+
         btn.addEventListener("mousemove", (e) => {
           const rect = btn.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          btn.style.transform = `translate(${x * 0.12}px, ${y * 0.25}px)`;
+          tx = (e.clientX - rect.left - rect.width / 2) * 0.12;
+          ty = (e.clientY - rect.top - rect.height / 2) * 0.25;
+          apply();
         });
         btn.addEventListener("mouseleave", () => {
-          btn.style.transform = "translate(0, 0)";
+          tx = 0;
+          ty = 0;
+          pressed = false;
+          apply();
+        });
+        btn.addEventListener("mousedown", () => {
+          pressed = true;
+          apply();
+        });
+        btn.addEventListener("mouseup", () => {
+          pressed = false;
+          apply();
         });
       });
 
